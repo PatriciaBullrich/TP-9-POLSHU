@@ -19,7 +19,10 @@ public class MainActivity extends BaseActivity {
     public static final int REQUEST_TEXT = 102;
     public static final int REQUEST_RINGTONE = 103;
 
-
+    public void irAText(){ switchActivity(TextActivity.class);}
+    public void irAFoto(){ switchActivity(FotoActivity.class);}
+    public void irARing(){ switchActivity(RingToneActivity.class);}
+    
     public void inicializar(){
     }
 

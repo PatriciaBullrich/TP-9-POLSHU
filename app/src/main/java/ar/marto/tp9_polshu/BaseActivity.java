@@ -1,7 +1,9 @@
 package ar.marto.tp9_polshu;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +40,17 @@ public class BaseActivity extends AppCompatActivity {
     } */
     //endregion
 
+
+    public void setCanceledResult(){
+        Intent intent = new Intent();
+        startActivityForResult(intent,RESULT_CANCELED);
+        finish();
+    }
+
+    public void switchActivity(Class a){
+        Intent intent = new Intent(this, a);
+        startActivity(intent);
+    }
 
 
     // region Preferences functions

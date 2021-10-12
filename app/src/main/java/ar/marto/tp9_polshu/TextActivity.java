@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ar.marto.tp9_polshu.utiles.AlertHelper;
+
 public class TextActivity extends BaseActivity {
     EditText edt_texto;
     Button btn_enviar;
@@ -24,19 +26,22 @@ public class TextActivity extends BaseActivity {
         btn_cancelar.setOnClickListener(btn_cancelar_click);
     }
 
+    private boolean llenoElTexto(){ return edt_texto.getText().toString().trim().length()>0;}
+
+
     View.OnClickListener btn_enviar_click = v ->{
+        if(!llenoElTexto()){
+            AlertHelper.mostrarAlertaError(getApplicationContext(),"por favor llena el texto");
+            return;
+        }
         Intent returnIntent = new Intent();
-        String texto = edt_texto.getText().toString().trim(); //validar
+        String texto = edt_texto.getText().toString().trim();
         returnIntent.putExtra("result",texto);
-        setResult(RESULT_OK,returnIntent);
+        startActivityForResult(returnIntent,MainActivity.REQUEST_TEXT);
         finish();
     };
 
-    View.OnClickListener btn_cancelar_click = v ->{
-        Intent returnIntent = new Intent();
-        setResult(RESULT_CANCELED,returnIntent);
-        finish();
-    };
+    View.OnClickListener btn_cancelar_click = v -> setCanceledResult();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

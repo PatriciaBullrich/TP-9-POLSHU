@@ -6,19 +6,23 @@ import android.widget.Button;
 
 public class FotoActivity extends BaseActivity {
     Button btn_galeria;
-    // btn_cancelar; ??????
+    Button btn_cancelar;
     public void inicializar(){
         btn_galeria = (Button) findViewById(R.id.gone); //falta xml
+        btn_cancelar =(Button) findViewById(R.id.gone);
     }
 
     public void setearListeners(){
         btn_galeria.setOnClickListener(btn_galeria_click);
+        btn_cancelar.setOnClickListener(btn_cancelar_click);
     }
 
     View.OnClickListener btn_galeria_click = v->{
        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, MainActivity.REQUEST_FOTO);
     };
+
+    View.OnClickListener btn_cancelar_click = v -> setCanceledResult();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +18,7 @@ public class MainActivity extends BaseActivity {
     public static final int REQUEST_FOTO = 101;
     public static final int REQUEST_TEXT = 102;
     public static final int REQUEST_RINGTONE = 103;
+
 
     public void inicializar(){
     }
@@ -53,7 +55,14 @@ public class MainActivity extends BaseActivity {
 
             case REQUEST_RINGTONE:
                 // ir a cambiar el ringotone
+                Uri ringtone = Uri.parse(data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI));
+                RingtoneManager.setActualDefaultRingtoneUri(
+                        this,
+                        RingtoneManager.TYPE_RINGTONE,
+                        ringtone);
+                tostada(String.format("cambiaste tu ringtone a %s", RingtoneManager.URI_COLUMN_INDEX));
                 break;
+
         }
     }
 
@@ -63,6 +72,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         inicializar();
+        setearListeners();
     }
 
 

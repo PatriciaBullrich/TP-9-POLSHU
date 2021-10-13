@@ -6,15 +6,15 @@ import android.widget.Button;
 
 public class FotoActivity extends BaseActivity {
     Button btn_galeria;
-    Button btn_cancelar;
+    Button btn_cancelar2;
     public void inicializar(){
         btn_galeria = (Button) findViewById(R.id.gone); //falta xml
-        btn_cancelar =(Button) findViewById(R.id.gone);
+        btn_cancelar2 =(Button) findViewById(R.id.gone);
     }
 
     public void setearListeners(){
         btn_galeria.setOnClickListener(btn_galeria_click);
-        btn_cancelar.setOnClickListener(btn_cancelar_click);
+        btn_cancelar2.setOnClickListener(btn_cancelar_click);
     }
 
     View.OnClickListener btn_galeria_click = v->{

@@ -16,9 +16,9 @@ public class TextActivity extends BaseActivity {
     Button btn_cancelar;
 
     public void inicializar(){
-        edt_texto  = (EditText) findViewById(R.id.gone); //falta crear en xml
-        btn_enviar = (Button) findViewById(R.id.gone); //falta crear en xml
-        btn_cancelar = (Button) findViewById(R.id.gone); //falta crear en xml
+        edt_texto  = (EditText) findViewById(R.id.et_texto); //falta crear en xml
+        btn_enviar = (Button) findViewById(R.id.btn_enviar); //falta crear en xml
+        btn_cancelar = (Button) findViewById(R.id.btn_cancelar); //falta crear en xml
     }
 
     public void setearListeners(){

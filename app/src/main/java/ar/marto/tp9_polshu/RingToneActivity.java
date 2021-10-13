@@ -12,13 +12,17 @@ import androidx.appcompat.widget.ButtonBarLayout;
 
 public class RingToneActivity extends BaseActivity {
     Button btn_ringtone;
-     // Button btn_cancelar; ????
+    Button btn_cancelar3;
+
     public void inicializar(){
-        btn_ringtone = (Button) findViewById(R.id.gone); // xml
+        btn_ringtone = (Button) findViewById(R.id.gone);
+        btn_cancelar3 = (Button) findViewById(R.id.gone);
+        // xml
     }
 
     public void setearListeners(){
         btn_ringtone.setOnClickListener(btn_ringtone_click);
+        btn_cancelar3.setOnClickListener(btn_cancelar_click);
     }
 
     View.OnClickListener btn_ringtone_click = v ->{
@@ -29,10 +33,10 @@ public class RingToneActivity extends BaseActivity {
         Uri urie =     RingtoneManager.getActualDefaultRingtoneUri(
                 getApplicationContext(), RingtoneManager.TYPE_RINGTONE);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, urie);
-
         startActivityForResult(intent, MainActivity.REQUEST_RINGTONE);
     };
 
+    View.OnClickListener btn_cancelar_click  = v -> setCanceledResult();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

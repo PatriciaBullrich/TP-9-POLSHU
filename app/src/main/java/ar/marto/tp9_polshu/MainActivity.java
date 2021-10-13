@@ -6,10 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import ar.marto.tp9_polshu.utiles.AlertHelper;
@@ -19,10 +22,15 @@ public class MainActivity extends BaseActivity {
     public static final int REQUEST_TEXT = 102;
     public static final int REQUEST_RINGTONE = 103;
 
+    Button btn_foto = (Button) findViewById(R.id.btn_foto);
+    Button btn_texto = (Button) findViewById(R.id.btn_texto);
+    Button btn_ringtone = (Button) findViewById(R.id.btn_rintone);
+    ImageView mi_imagen = (ImageView) findViewById(R.id.mi_imagen);
+
     public void irAText(){ switchActivity(TextActivity.class);}
     public void irAFoto(){ switchActivity(FotoActivity.class);}
     public void irARing(){ switchActivity(RingToneActivity.class);}
-    
+
     public void inicializar(){
     }
 
@@ -52,8 +60,8 @@ public class MainActivity extends BaseActivity {
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
                 cursor.close();
-                /*ImageView jorge;
-                jorge.setImageResource(picturePath);*/
+                Bitmap soyelmapa = BitmapFactory.decodeFile(picturePath);
+                mi_imagen.setImageBitmap(soyelmapa);
                 break;
 
             case REQUEST_RINGTONE:

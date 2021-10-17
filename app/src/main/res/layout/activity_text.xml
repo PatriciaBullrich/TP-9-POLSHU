@@ -10,7 +10,7 @@
         android:id="@+id/et_texto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Escriba algo"
@@ -20,21 +20,20 @@
 
     <Button
         android:id="@+id/btn_enviar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Enviar"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cancelar"
-        app:layout_constraintTop_toBottomOf="@+id/et_texto"
-        app:layout_constraintVertical_bias="0.782"
-        tools:layout_editor_absoluteX="55dp" />
+        app:layout_constraintEnd_toEndOf="@+id/et_texto"
+        app:layout_constraintStart_toStartOf="@+id/et_texto"
+        app:layout_constraintTop_toBottomOf="@+id/et_texto" />
 
     <Button
         android:id="@+id/btn_cancelar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_enviar"
+        app:layout_constraintStart_toStartOf="@+id/btn_enviar"
+        app:layout_constraintTop_toBottomOf="@+id/btn_enviar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

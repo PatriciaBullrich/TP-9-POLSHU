@@ -15,9 +15,8 @@ public class RingToneActivity extends BaseActivity {
     Button btn_cancelar3;
 
     public void inicializar(){
-        btn_ringtone = (Button) findViewById(R.id.gone);
-        btn_cancelar3 = (Button) findViewById(R.id.gone);
-        // xml
+        btn_ringtone = (Button) findViewById(R.id.btn_ringtone);
+        btn_cancelar3 = (Button) findViewById(R.id.btn_cancelar3);
     }
 
     public void setearListeners(){
@@ -33,7 +32,8 @@ public class RingToneActivity extends BaseActivity {
         Uri urie =     RingtoneManager.getActualDefaultRingtoneUri(
                 getApplicationContext(), RingtoneManager.TYPE_RINGTONE);
         intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, urie);
-        startActivityForResult(intent, MainActivity.REQUEST_RINGTONE);
+        setResult(MainActivity.RESULT_OK,intent);
+        finish();
     };
 
     View.OnClickListener btn_cancelar_click  = v -> setCanceledResult();

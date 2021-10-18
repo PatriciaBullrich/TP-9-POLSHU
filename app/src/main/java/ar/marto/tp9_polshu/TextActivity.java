@@ -37,7 +37,7 @@ public class TextActivity extends BaseActivity {
         Intent returnIntent = new Intent();
         String texto = edt_texto.getText().toString().trim();
         returnIntent.putExtra("result",texto);
-        startActivityForResult(returnIntent,MainActivity.REQUEST_TEXT);
+        setResult(MainActivity.RESULT_OK,returnIntent);
         finish();
     };
 

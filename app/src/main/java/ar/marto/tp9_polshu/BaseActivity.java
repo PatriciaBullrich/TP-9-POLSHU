@@ -43,13 +43,18 @@ public class BaseActivity extends AppCompatActivity {
 
     public void setCanceledResult(){
         Intent intent = new Intent();
-        startActivityForResult(intent,RESULT_CANCELED);
+        setResult(RESULT_CANCELED,intent);
         finish();
     }
 
     public void switchActivity(Class a){
         Intent intent = new Intent(this, a);
         startActivity(intent);
+    }
+
+    public void switchActivity(Class a, int requestCode){
+        Intent intent = new Intent(this, a);
+        startActivityForResult(intent,requestCode);
     }
 
 

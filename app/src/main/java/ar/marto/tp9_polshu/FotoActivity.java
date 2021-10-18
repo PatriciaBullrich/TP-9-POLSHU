@@ -8,8 +8,8 @@ public class FotoActivity extends BaseActivity {
     Button btn_galeria;
     Button btn_cancelar2;
     public void inicializar(){
-        btn_galeria = (Button) findViewById(R.id.gone); //falta xml
-        btn_cancelar2 =(Button) findViewById(R.id.gone);
+        btn_galeria = (Button) findViewById(R.id.btn_galeria); //falta xml
+        btn_cancelar2 =(Button) findViewById(R.id.btn_cancelar2);
     }
 
     public void setearListeners(){
@@ -18,8 +18,10 @@ public class FotoActivity extends BaseActivity {
     }
 
     View.OnClickListener btn_galeria_click = v->{
-       Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, MainActivity.REQUEST_FOTO);
+         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+         intent.putExtras()
+        setResult(MainActivity.RESULT_OK,intent);
+        finish();
     };
 
     View.OnClickListener btn_cancelar_click = v -> setCanceledResult();

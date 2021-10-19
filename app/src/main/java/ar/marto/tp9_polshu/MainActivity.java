@@ -1,17 +1,13 @@
 package ar.marto.tp9_polshu;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +19,7 @@ import ar.marto.tp9_polshu.utiles.CustomLog;
 public class MainActivity extends BaseActivity {
     public static final int REQUEST_FOTO = 101;
     public static final int REQUEST_TEXT = 102;
-    public static final int REQUEST_RINGTONE = 103;
+    public static final int REQUEST_CONTACT = 103;
     Button btn_foto;
     Button btn_texto;
     Button btn_ringtone;
@@ -38,7 +34,13 @@ public class MainActivity extends BaseActivity {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, REQUEST_FOTO);
     }
-    public void irARing(){ switchActivity(RingToneActivity.class,REQUEST_RINGTONE);}
+    public void irAContact(){
+        Uri uri = Uri.parse("content://contacts");
+        //Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_PICK, uri);
+        intent.setDataAndType(uri,ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        startActivityForResult(intent, REQUEST_CONTACT);
+    }
 
     public void inicializar(){
          btn_foto = (Button) findViewById(R.id.btn_foto);
@@ -71,17 +73,20 @@ public class MainActivity extends BaseActivity {
                 if(thumbnail != null)mi_imagen.setImageBitmap(thumbnail);
                 else AlertHelper.mostrarAlertaError(this, "no me llego ninguna foto");
                 break;
+            case REQUEST_CONTACT:
+                Uri uri =data.getData();
+                String[] projection = { ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME };
+                Cursor cursor = getContentResolver().query(uri, projection,
+                        null, null, null);
+                cursor.moveToFirst();
 
-            case REQUEST_RINGTONE:
-                // ir a cambiar el ringotone
-                Uri ringtone = Uri.parse(data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI));
-                RingtoneManager.setActualDefaultRingtoneUri(
-                        this,
-                        RingtoneManager.TYPE_RINGTONE,
-                        ringtone);
-                tostada(String.format("cambiaste tu ringtone a %s", RingtoneManager.URI_COLUMN_INDEX));
+                int numberColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                String number = cursor.getString(numberColumnIndex);
+
+                int nameColumnIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                String name = cursor.getString(nameColumnIndex);
+                tostada(String.format("tu contacto es: %s con el numero: %s", name,number));
                 break;
-
         }
     }
 
@@ -89,7 +94,7 @@ public class MainActivity extends BaseActivity {
 
     View.OnClickListener btn_foto_click = v -> irAFoto();
     View.OnClickListener btn_texto_click = v -> irAText();
-    View.OnClickListener btn_ring_click = v -> irARing();
+    View.OnClickListener btn_ring_click = v -> irAContact();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

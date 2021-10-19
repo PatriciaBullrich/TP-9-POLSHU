@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Ringtone"
+        android:text="contactos"
         app:layout_constraintEnd_toEndOf="@+id/btn_foto"
         app:layout_constraintStart_toStartOf="@+id/btn_foto"
         app:layout_constraintTop_toTopOf="@+id/btn_foto" />

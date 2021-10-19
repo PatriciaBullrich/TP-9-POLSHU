@@ -58,7 +58,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-
     // region Preferences functions
     // to save preferences call this.SavePreferences(key, value).
     // to read preferences call this.ReadPreferences(value, datatype as a string) EG: ReadPreferences("userCount", "int").

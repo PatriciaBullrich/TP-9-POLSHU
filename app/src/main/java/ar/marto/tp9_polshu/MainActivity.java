@@ -32,7 +32,12 @@ public class MainActivity extends BaseActivity {
 
 
     public void irAText(){ switchActivity(TextActivity.class,REQUEST_TEXT);}
-    public void irAFoto(){ switchActivity(FotoActivity.class,REQUEST_FOTO);}
+
+    public void irAFoto(){
+        //switchActivity(FotoActivity.class, REQUEST_FOTO);
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_FOTO);
+    }
     public void irARing(){ switchActivity(RingToneActivity.class,REQUEST_RINGTONE);}
 
     public void inicializar(){
@@ -40,7 +45,7 @@ public class MainActivity extends BaseActivity {
          btn_texto = (Button) findViewById(R.id.btn_texto);
          btn_ringtone = (Button) findViewById(R.id.btn_rintone);
          mi_imagen = (ImageView) findViewById(R.id.mi_imagen);
-         tv_result = findViewById(R.id.tv_result);
+         tv_result = (TextView) findViewById(R.id.tv_result);
     }
 
     public void setearListeners(){

@@ -18,9 +18,8 @@ public class FotoActivity extends BaseActivity {
     }
 
     View.OnClickListener btn_galeria_click = v->{
-         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-         intent.putExtras()
-        setResult(MainActivity.RESULT_OK,intent);
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        setResult(RESULT_OK,intent);
         finish();
     };
 
